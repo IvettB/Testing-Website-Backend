@@ -12,6 +12,7 @@ const passport = require('passport')
 // Require Google strategy
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 // Here you will require() anything else you need
+const { getOrCreateUser } = require('./util')
 
 
 // This defines what will be in the session cookie
@@ -31,8 +32,8 @@ passport.deserializeUser(async (user, done) => {
 // Here you will set up a connection to Google using variables from your .env file
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: "THIS IS A BAD HARD CODED SECRET!!!", // TODO: replace with your value
-    callbackURL: "PUT YOUR CALLBACK URL HERE", // TODO: replace with your value
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET, // TODO: replace with your value
+    callbackURL: `${process.env.API_ORIGIN}${process.env.GOOGLE_CALLBACK_PATH}`, // TODO: replace with your value
 },
     async function (accessToken, refreshToken, profile, done) {
         try {
@@ -41,7 +42,7 @@ passport.use(new GoogleStrategy({
              * with `let user = <use the getOrCreateUser function>`, see instructions Step 5.
              * This will retrieve the user from mongoDB for you.
              */
-            let user = { UserName: "Fake User", Email: "Fake Email" }
+            let user = await getOrCreateUser(profile); // we're not too sure but pretty sure it works
 
             return done(null, user);
         } catch (error) {

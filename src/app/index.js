@@ -6,9 +6,11 @@ const { authenticate } = require(`./util`)
 const session = require(`express-session`)
 const passport = require('passport') // this line imports the passport package
 // TODO: Here, you should require() your mongoose and passport setup files that you create
-
+require('./mongoose');
+const store = require(`./passport`)(session);
 // TODO: Here, you should require() your routers so you can use() them below
-const userRouter = require(`./routes/user`) // use this as a guide for your other routes
+const userRouter = require(`./routes/user`)
+const authRouter = require(`./routes/auth`) // use this as a guide for your other routes
 
 const app = express()
 
@@ -24,8 +26,28 @@ app.use(cookieParser()) // This line says that if there are any cookies, that yo
 
 // TODO: Here is where you should use the `express-session` middleware. See instructions, Step 6.2
 
+const sess = {
+    secret: process.env.GOOGLE_CLIENT_SECRET,
+    cookie: {maxAge: 604800000},
+    name: 'it210_session', //is this for sure single quotes?
+    resave: false,
+    saveUninitialized: true,
+    store
+}
+
+if (app.get('env') === 'production') {
+    app.set('trust proxy', 1) // trust first proxy
+    sess.cookie.secure = true // serve secure cookies
+    sess.cookie.sameSite = 'none'
+}
+
+app.use(session(sess))  // use the session with the attributes defined above
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // TODO: Here is where you should assign your routers to specific routes. Make sure to authenticate() the routes that need authentication.
 app.use(`/api/v1/user`, authenticate, userRouter) // use this as a guide for your other routes
+app.use(`/api/v1/auth`, authRouter)
 
 module.exports = app
