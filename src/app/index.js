@@ -11,6 +11,7 @@ const store = require(`./passport`)(session);
 // TODO: Here, you should require() your routers so you can use() them below
 const userRouter = require(`./routes/user`)
 const authRouter = require(`./routes/auth`) // use this as a guide for your other routes
+const taskRouter = require(`./routes/tasks`)
 
 const app = express()
 
@@ -49,5 +50,6 @@ app.use(passport.session());
 // TODO: Here is where you should assign your routers to specific routes. Make sure to authenticate() the routes that need authentication.
 app.use(`/api/v1/user`, authenticate, userRouter) // use this as a guide for your other routes
 app.use(`/api/v1/auth`, authRouter)
+app.use(`/api/v1/tasks`, authenticate, taskRouter)
 
 module.exports = app
