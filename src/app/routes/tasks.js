@@ -22,6 +22,8 @@ router.get(`/:id`, async (req, res) => {
 router.post('/', async (req, res) => {
 	try {
 		let newTask = new Task({UserId: req.user.Id, Text: req.body.Text, Done: false, Date: req.body.Date})
+		if (!req.body.Text || !req.body.Date)
+			throw new Error()
 		let savedTask = await newTask.save()
 		res.status(201).send(savedTask)
 		}
@@ -44,13 +46,25 @@ router.get('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
 	try {
-		const task = await Task.findById(req.params.id)
-		if (req.body.Done == null)
-			throw new Error(res.status(500).send(`Something went wrong.`))
+		if (req.params.id.length != 24) {
+			res.status(404).send(`Error, wrong id length.`)
+			return
+		}
+		//console.log(req.params.id.length)
+		if (!req.params.id) {
+			res.status(404).send(`Error, no id found.`)
+			return
+		} 
+		console.log(req.params.id)
+		console.log("This should print id")
+		let task = await Task.findById(req.params.id).exec()
+		if (!req.body.Done)
+			throw new Error()
 		if (!task) res.status(404).send(`Task with ID ${req.params.id} does not exist.`)
 			else 
 				var updatedTask = await Task.updateOne({_id: req.params.id}, {Done: req.body.Done})
-				res.status(200).send(updatedTask)
+				task.Done = req.body.Done
+				res.status(200).send(task)
 	}
 	catch (error) {
 		console.error(error)
@@ -60,7 +74,9 @@ router.put('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
 	try {
-		const task = await Task.findById(req.params.id)
+		let task = await Task.findById(req.params.id)
+		if (!req.params.id)
+			throw new Error()
 		if (!task) res.status(404).send(`Task with ID ${req.params.id} does not exist.`)
 			else 
 				var deletedTask = await Task.deleteOne({_id: req.params.id})
