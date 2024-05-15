@@ -75,6 +75,7 @@
 
   ## Additional Notes
   #### How to start your server:
-  - Open a new terminal window and navigate to ```src``` in your project. Once in the ```src``` folder, type ```npm start``` in your            terminal and hit enter. You should see the following if your server is successfully running:
+- Open a new terminal window and navigate to ```src``` in your project. Once in the ```src``` folder, type ```npm start``` in your            terminal and hit enter. You should see the following if your server is successfully running:
    <img width="361" alt="Screenshot 2024-05-15 at 10 46 18 AM" src="https://github.com/BYU-ITC-210/lab-4b-IvettB/assets/77896065/aba42bc0-0712-4bc5-957d-4858ff2cf7f9">
-  - Debug: If your server doesn't start up, your current IP address is not added! Navigate to your Cluster on MongoDB Atlas and add your       current IP address.
+   
+- Debug: If your server doesn't start up, your current IP address is not added! Navigate to your Cluster on MongoDB Atlas and add your       current IP address.
