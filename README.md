@@ -61,7 +61,9 @@ The API uses Google Authentication to login the user. When the user requests the
     * GET: It is used to retrieve or read data from a specific server. This method does not allow access to updating the data in any way, it is simply used to get the information.
     * POST: It is used to update a resource on the server using the information stored in the body of the HTTP request. This means that the update will happen based on some parameter that the user requests to change.
     * PUT: It is used to send new information to the server and create a new resource. The new information is stored in the body of the HTTP request.
-    * DELETE: It is used to delete data from the server. GET, PUT, and DELETE are idempotent methods, while POST is not idempotent.
+    * DELETE: It is used to delete data from the server.
+    
+GET, PUT, and DELETE are idempotent methods, while POST is not idempotent.
  
 ## Lessons Learned:
 #### Network Access and Security
