@@ -30,7 +30,7 @@ The user endpoint retrieves information about the current user, including the em
 
 <img width="1185" alt="Screenshot 2024-05-16 at 3 49 26 PM" src="https://github.com/BYU-ITC-210/lab-4b-IvettB/assets/77896065/bd94b611-bdb2-4817-9973-7060a2d983b0">
 
-The tasks endpoint (```/api/v1/tasks```) retrieves the list of all tasks in the database associated with the current, logged-in user. Notice that the user ID is the same for each task. Additionally, “Text” is displayed which is user’s the description of the task, and “Date”, which is the date input the user provided when requesting to add the given task to the list. There is also a boolean “Done” value associated with each task. This marks whether the task has or has not been completed. The task ID is another important information that allows the user to interact with a certain task. For example, if the user wishes to change a task from not done to done, they would need this task ID to request that change in the database.
+The tasks endpoint (```/api/v1/tasks```) retrieves the list of all tasks in the database associated with the current, logged-in user. Notice that the user ID is the same for each task. Additionally, “Text” is displayed which is the user’s description of the task, and “Date”, which is the date input the user provided when requesting to add the given task to the list. There is also a boolean “Done” value associated with each task. This marks whether the task has or has not been completed. The task ID is another important information that allows the user to interact with a certain task. For example, if the user wishes to change a task from not done to done, they would need this task ID to request that change in the database.
 
 
 #### Google Login
