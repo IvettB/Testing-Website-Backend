@@ -23,7 +23,7 @@ As indicated in the UML diagram above, the user starts by requesting to login by
 
 <img width="1102" alt="Screenshot 2024-05-16 at 3 46 36 PM" src="https://github.com/BYU-ITC-210/lab-4b-IvettB/assets/77896065/027740fe-6135-4ca5-8803-18a5cf36037e">
 
-The user endpoint retrieves information about the current user, including the email, username, and user ID. This page can be reached by requesting the ```/api/v1/user``` endpoint. This information is only displayed if the user was first authenticated and logged in by Google. If the user is not authenticated, an “Unauthorized” error message appears on the screen instead of the user’s information. The user endpoint helps the user identify which account they’re logged in with.
+The user endpoint retrieves information about the current user, including the email, username, and user ID. This page can be reached by requesting the ```/api/v1/user``` endpoint. This information is only displayed if the user is first authenticated and logged in by Google. If the user is not authenticated, an “Unauthorized” error message appears on the screen instead of the user’s information. The user endpoint helps the user identify which account they’re logged in with.
 
 
 #### Tasks Endpoint
