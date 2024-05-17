@@ -46,8 +46,8 @@ The API uses Google Authentication to login the user. When the user requests the
 * routes/user.js - Returns the current user object after being authenticated.
 * models/Task.js - Creates a Mongoose Model/Schema for the Task.
 * models/User.js - Creates a Mongoose Model/Schema for the User.
-* mongoose.js - Serves as the entry point for the API server.
-* mssqldb.js - Creates the connection to MongoDB Atlas.
+* index.js - Serves as the entry point for the API server.
+* mongoose.js - Creates the connection to MongoDB Atlas.
 * passport.js - Initializes the passport.
 * api.js - Creates a new API instance.
 * api.test.js - Implements unit tests to test the API’s functionality.
