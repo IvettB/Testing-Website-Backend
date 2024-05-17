@@ -73,7 +73,9 @@ To receive response data with Postman, a session cookie needs to be acquired fro
 #### Updating a Task
 When updating a task, it is important to send back the task object with the updated task, and not the result of the update query. One might think that the following code will update the task and send back a true Done value:
 
-```var updatedTask = await Task.updateOne({_id: req.params.id}, {Done: req.body.Done})```
+```
+var updatedTask = await Task.updateOne({_id: req.params.id}, {Done: req.body.Done})
+```
 
 However, this code is incomplete. updateOne takes in what we would like to change as its first parameter, and what we would like to change it to as its second parameter. However, req.body.Done doesn’t return a true or false value, it just returns the result of a query, which means that instead of the expected true value, we get an undefined error when testing the Update handler. The following is the correct solution to update a task:
 
