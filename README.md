@@ -90,7 +90,7 @@ var updatedTask = await Task.updateOne({_id: req.params.id}, {Done: req.body.Don
 
 This sets the task object’s Done value equal to the request body Done’s value, and this object can now be sent as a response.
 
-## Skills Acquired:
+## Skills Acquired / Conclusions:
 - Use Postman: Make requests, interpret responses, and efficiently use for debugging
 - Install packages using npm
 - Use Google’s Developer Console to set up Google Authentication 
