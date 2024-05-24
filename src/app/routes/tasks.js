@@ -58,7 +58,7 @@ router.put('/:id', async (req, res) => {
 		console.log(req.params.id)
 		console.log("This should print id")
 		let task = await Task.findById(req.params.id).exec()
-		if (!req.body.Done)
+		if (req.body.Done == null)
 			throw new Error()
 		if (!task) res.status(404).send(`Task with ID ${req.params.id} does not exist.`)
 			else 
